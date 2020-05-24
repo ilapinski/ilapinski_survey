@@ -1,0 +1,29 @@
+<?php
+include 's4w_testconnection.php';
+$conn = OpenCon();
+
+
+$string = file_get_contents("../assets/questions_student.json");
+if ($string === false) {
+    // deal with error...
+}
+
+$json_a = json_decode($string, true);
+if ($json_a === null) {
+    // deal with error...
+}
+
+foreach ($json_a as $questions => $question) {
+    $question['questionId'] = $question['questionId'] + 100;
+    echo $question['questionId'];
+
+    $sql = "INSERT INTO s4s_corona.questionsTable (id, isTeacherQuestion, title) VALUES ('". $question['questionId']. "', 0, '". $question['questionTitle']. "');";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+CloseCon($conn);
+?>

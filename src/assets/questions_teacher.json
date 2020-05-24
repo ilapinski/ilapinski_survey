@@ -1,0 +1,182 @@
+[
+  {
+    "questionId": 1,
+    "questionTitle": "Welche Klassenstufe unterrichten Sie?",
+    "questionType": "MULTIPLECHOICE",
+    "questionAnswers": [
+      "1 Klasse",
+      "2 Klasse",
+      "3 Klasse",
+      "4 Klasse",
+      "5 Klasse",
+      "6 Klasse",
+      "7 Klasse",
+      "8 Klasse",
+      "9 Klasse",
+      "10 Klasse",
+      "11 Klasse",
+      "12 Klasse",
+      "13 Klasse"
+    ]
+  },
+  {
+    "questionId": 2,
+    "questionTitle": "Welche der unten genannten Fächer unterrichten Sie?",
+    "questionType": "DROPDOWN",
+    "options": [{"title": "Biologie", "shortcut": "BIO"},
+        {"title": "Chemie", "shortcut": "CHE"},
+        {"title": "Deutsch", "shortcut": "DEU"},
+        {"title": "Englisch", "shortcut": "ENG"},
+        {"title": "Französisch", "shortcut": "FRA"},
+        {"title": "Geographie", "shortcut": "GEO"},
+        {"title": "Geschichte", "shortcut": "GES"},
+        {"title": "Informatik", "shortcut": "INF"},
+        {"title": "Latein", "shortcut": "LAT"},
+        {"title": "Mathe", "shortcut": "MAT"},
+        {"title": "Physik", "shortcut": "PHY"},
+        {"title": "Spanisch", "shortcut": "SPA"}]
+  },
+  {
+    "questionId": 3,
+    "questionTitle": "Wie oft hatten/haben Sie Kontakt zu Ihren Schülern?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Weniger als 1 Mal die Woche", "1 bis 3 Mal die Woche", "4 bis 5 Mal die Woche", "Mehr als 5 Mal die Woche"]
+  },
+  {
+    "questionId": 4,
+    "questionTitle": "Haben Sie konkrete Aufgaben für die Zeit der Schulschließung vergeben?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 1
+  },
+  {
+    "questionId": 5,
+    "questionTitle": "Wenn ja, in welchen Fächern?",
+    "questionType": "DROPDOWN",
+    "options": [{"title": "Biologie", "shortcut": "BIO"},
+        {"title": "Chemie", "shortcut": "CHE"},
+        {"title": "Deutsch", "shortcut": "DEU"},
+        {"title": "Englisch", "shortcut": "ENG"},
+        {"title": "Französisch", "shortcut": "FRA"},
+        {"title": "Geographie", "shortcut": "GEO"},
+        {"title": "Geschichte", "shortcut": "GES"},
+        {"title": "Informatik", "shortcut": "INF"},
+        {"title": "Latein", "shortcut": "LAT"},
+        {"title": "Mathe", "shortcut": "MAT"},
+        {"title": "Physik", "shortcut": "PHY"},
+        {"title": "Spanisch", "shortcut": "SPA"}]
+  },
+  {
+    "questionId": 6,
+    "questionTitle": "Denken Sie, Ihre Schüler können/konnten ohne Anleitung gut mit den Hausaufgaben umgehen?",
+    "questionType": "BOOL"
+  },
+  {
+    "questionId": 7,
+    "questionTitle": "Was denken Sie, wie viel Zeit Ihre Schüler pro Tag mit Lernen verbringen?",
+    "questionType": "SLIDER",
+    "questionAnswers": ["0", "9"],
+    "measurementType": "Std."
+  },
+  {
+    "questionId": 8,
+    "questionTitle": "Erwarten Sie, dass sich die Schüler selbständig in Lerngruppen organisieren?",
+    "questionType": "BOOL"
+  },
+  {
+    "questionId": 9,
+    "questionTitle": "Welche digitalen Organisations- und Lerntools wurden bereits vor der Schulschließung in Ihrer Schule benutzt?",
+    "questionType": "MULTIPLECHOICE",
+    "questionAnswers": [
+      "Keine",
+      "Schulinterne Cloud",
+      "Whatsapp-Gruppen (Klassenchats/Sprachnachrichten/Videotelefonie)",
+      "Whiteboards",
+      "Lern-Apps",
+      "YouTube-Videos",
+      "Andere"
+    ]
+  },
+  {
+    "questionId": 10,
+    "questionTitle": "Wurden digitale Tools für die Bewältigung der Schulschließungen kurzfristig angeschafft oder installiert??",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 1
+  },
+  {
+    "questionId": 11,
+    "questionTitle": "Wenn ja, welche?",
+    "questionType": "TEXT"
+  },
+  {
+    "questionId": 12,
+    "questionTitle": "Wie gut organisiert verlief der Prozess der Schulschließung?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Sehr gut organisiert", "Gut organisiert", "Mittelmäßig", "Schlecht organisiert", "Sehr schlecht organisiert"]
+  },
+  {
+    "questionId": 13,
+    "questionTitle": "Welche Materialien haben Sie Ihren Schülern für das remote-learning in der Zeit der Schulschließung zur Verfügung gestellt?",
+    "questionType": "MULTIPLECHOICE",
+    "questionAnswers": [
+      "Keine",
+      "Hinweise auf die Lernbücher",
+      "Vorbereitete Kopien (Print) aus den Schulbüchern",
+      "Eigens erstellte Aufgaben (Print)",
+      "Arbeitsblätter via Mail verschickt"
+    ],
+    "optionalTextfield": true
+  },
+  {
+    "questionId": 14,
+    "questionTitle": "Bewerten Sie bitte, wie das remote learning während der Zeit der Schulschließung funktioniert hat.",
+    "questionType": "SINGLECHOICE",
+    "options": ["Mangelhaft", "Befriedigend", "Gut bis sehr gut"]
+  },
+  {
+    "questionId": 15,
+    "questionTitle": "Haben Sie während der Zeit der Schulschließung Kontakt zu Ihren Schülern?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 1
+  },
+  {
+    "questionId": 16,
+    "questionTitle": "Wie häufig haben Sie Kontakt?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Weniger als 1 Mal die Woche", "1 bis 3 Mal die Woche", "4 bis 5 Mal die Woche", "Mehr als 5 Mal die Woche"]
+  },
+  {
+    "questionId": 17,
+    "questionTitle": "Werden oder haben Sie den Lernfortfortschritt der Schüler während der Schulschließung überprüft?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 1
+  },
+  {
+    "questionId": 18,
+    "questionTitle": "Wenn ja, wie wird/wurde der Lernfortschritt überprüft?",
+    "questionType": "TEXT"
+  },
+  {
+    "questionId": 19,
+    "questionTitle": "Welche Punkte für evtl. zukünftige Schulschließungen müssen nach Ihrer Ansicht dringend verbessert werden?",
+    "questionType": "MULTIPLECHOICE",
+    "questionAnswers": [
+      "Keine",
+      "Installation digitaler Lern-Tools",
+      "Bessere Kommunikationswege schaffen",
+      "Frühzeitigere Information zur Schulschließung",
+      "Mehr Vorbereitungszeit um entsprechende Maßnahmen zu ergreifen"
+    ],
+    "optionalTextfield": true
+  },
+  {
+    "questionId": 20,
+    "questionTitle": "Welche digitalen + analogen Tools waren sehr hilfreich in der Zeit der Schulschließung?",
+    "questionType": "TEXT"
+  },
+  {
+    "questionId": 21,
+    "questionTitle": "Bewerte Sie bitte, wie das Remote Learning funktioniert hat.",
+    "questionType": "SINGLECHOICE",
+    "options": ["Sehr gut", "Gut", "Befriedigend", "Ausreichend",  "Mangelhaft"]
+  }
+]

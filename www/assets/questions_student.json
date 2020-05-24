@@ -1,0 +1,136 @@
+[
+  {
+    "questionId": 1,
+    "questionTitle": "In welche Klassenstufe gehst Du?",
+    "questionType": "SLIDER",
+    "questionAnswers": ["1", "13"],
+    "measurementType": "Klasse"
+  },
+  {
+    "questionId": 2,
+    "questionTitle": "Wie hast du von der Schulschließung erfahren?",
+    "questionType": "MULTIPLECHOICE",
+    "questionAnswers": [
+      "Durch deine Lehrer/innen im Unterricht",
+      "Durch Social-Media-Kanäle",
+      "Durch Post von der Schule",
+      "Durch eine Mail von der Schule",
+      "Durch deine Eltern"
+    ],
+    "optionalTextfield": true
+  },
+  {
+    "questionId": 3,
+    "questionTitle": "Hast du dich von deiner Schule gut informiert gefühlt, was die Schließung deiner Schule angeht?",
+    "questionType": "BOOL"
+  },
+  {
+    "questionId": 4,
+    "questionTitle": "Hattest Du Kontakt zu Deinen Lehrern in der Zeit während die Schule geschlossen war?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 2
+  },
+  {
+    "questionId": 5,
+    "questionTitle": "Wenn ja wie oft?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Weniger als 1 Mal die Woche", "1 bis 3 Mal die Woche", "4 bis 5 Mal die Woche", "Mehr als 5 Mal die Woche"]
+  },
+  {
+    "questionId": 6,
+    "questionTitle": "Wie sah dieser Kontakt aus? Wie habt ihr euch ausgetauscht?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Telefonisch", "Via Whatsapp", "Via E-Mail", "Andere Kommunikationskanäle"]
+  },
+  {
+    "questionId": 7,
+    "questionTitle": "Gab es während der Schulschließung Überprüfungen des Lernstoffes/deiner Aufgaben durch deine Lehrer?",
+    "questionType": "BOOL"
+  },
+  {
+    "questionId": 8,
+    "questionTitle": "Hast Du konkrete Aufgaben für die Zeit der Schulschließung bekommen?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 2
+  },
+  {
+    "questionId": 9,
+    "questionTitle": "Wenn ja, in welchen Fächern?",
+    "questionType": "DROPDOWN",
+    "options": [{"title": "Biologie", "shortcut": "BIO"},
+        {"title": "Chemie", "shortcut": "CHE"},
+        {"title": "Deutsch", "shortcut": "DEU"},
+        {"title": "Englisch", "shortcut": "ENG"},
+        {"title": "Französisch", "shortcut": "FRA"},
+        {"title": "Geographie", "shortcut": "GEO"},
+        {"title": "Geschichte", "shortcut": "GES"},
+        {"title": "Informatik", "shortcut": "INF"},
+        {"title": "Latein", "shortcut": "LAT"},
+        {"title": "Mathe", "shortcut": "MAT"},
+        {"title": "Physik", "shortcut": "PHY"},
+        {"title": "Spanisch", "shortcut": "SPA"}]
+  },
+  {
+    "questionId": 10,
+    "questionTitle": "Wie gut hast du verstanden, was du in den Hausaufgaben tun musst?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Sehr gut verstanden", "Gut verstanden", "Mittelmäßig verstanden", "Nicht verstanden", "Gar nicht verstanden"]
+  },
+  {
+    "questionId": 11,
+    "questionTitle": "Welche digitalen Tools wurden zur Zeit der Schulschließung benutzt?",
+    "questionType": "TEXT"
+  },
+  {
+    "questionId": 12,
+    "questionTitle": "Wurden diese Tools für die Organisation des Lernens oder als Tools zum digitalen Lernen benutzt?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Organisation", "Tool zum digitalen Lernen"]
+  },
+  {
+    "questionId": 13,
+    "questionTitle": "Wieviel Zeit hast du pro Tag mit Schule/Lernen verbracht?",
+    "questionType": "SLIDER",
+    "questionAnswers": ["0", "9"],
+    "measurementType": "Std."
+  },
+  {
+    "questionId": 14,
+    "questionTitle": "Wurden Lerngruppen mit Klassenkameraden gebildet?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 2
+  },
+  {
+    "questionId": 15,
+    "questionTitle": "Wer hat die Lerngruppen initiiert?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Schüler", "Lehrer"]
+  },
+  {
+    "questionId": 16,
+    "questionTitle": "Waren das Online-Lerngruppen mit digitalen Tools oder analoge Präsenz-Lerngruppen?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Online", "Analog"]
+  },
+  {
+    "questionId": 17,
+    "questionTitle": "Haben Dir Deine Eltern beim Lernen geholfen?",
+    "questionType": "BOOL",
+    "skipAmountIfFalse": 1
+  },
+  {
+    "questionId": 18,
+    "questionTitle": "Wie hat das geklappt?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Sehr gut geklappt", "Gut geklappt", "Mittelmäßig geklappt", "Eher nicht geklappt", "Gar nicht geklappt"]
+  },
+  {
+    "questionId": 19,
+    "questionTitle": "Wie gut denkst du, dass du im Vergleich zum normalen schulischen Unterricht gelernt hast?",
+    "questionType": "SINGLECHOICE",
+    "options": ["Ich habe mehr gelernt", "Ich habe genauso viel gelernt", "Ich habe weniger gelernt"]
+  },
+  {"questionId": 20,
+    "questionTitle": "Wurde dir von deinen Lehrer/innen eine Lern-App empfohlen?",
+    "questionType": "BOOL"}
+]

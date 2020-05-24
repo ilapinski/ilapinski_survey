@@ -1,0 +1,97 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+
+.page-wrapper{
+    min-height: 100vh;
+    position: relative;
+}
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#header {
+    user-select: none;
+    width: 100vw;
+    background-image: url("/assets/header/bg.png");
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    position: relative;
+
+    @media screen and (max-width: 930px){
+        height: 40vh;
+    }
+
+    .logo{
+        position: absolute;
+        top: 30px;
+        left: 40px;
+        max-width: calc(100% - 40px);
+        max-height: 50px;
+    }
+}
+
+#footer {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    background-color: #002650;
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.8px;
+    margin-top: 50px;
+    line-height: 25px;
+    height: 150px;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover{
+        font-weight: 600;
+    }
+  }
+
+ion-modal{
+    --height: 320px !important;
+}
+
+ion-picker {
+    --border-radius: 10px 10px 0px 0px !important;
+}

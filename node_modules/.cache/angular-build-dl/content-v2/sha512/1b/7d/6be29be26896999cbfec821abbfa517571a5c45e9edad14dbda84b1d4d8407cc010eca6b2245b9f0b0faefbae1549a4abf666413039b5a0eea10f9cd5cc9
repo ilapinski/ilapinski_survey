@@ -1,0 +1,934 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["questionnaire-questionnaire-module"], {
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/components/timetable-entry/timetable-entry.component.html":
+  /*!*****************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/timetable-entry/timetable-entry.component.html ***!
+    \*****************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppComponentsTimetableEntryTimetableEntryComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-toolbar>\n  <ion-buttons slot=\"primary\">\n    <ion-button (click)=\"dismiss()\">\n      <ion-icon slot=\"icon-only\" name=\"close-outline\"></ion-icon>\n    </ion-button>\n  </ion-buttons>\n\n  <ion-title>Add entry</ion-title>\n</ion-toolbar>\n<div style=\"position: relative; height: 100%; width: 100%;\">\n  <div class=\"ion-text-left content\" >\n    <p class=\"title\">Title</p>\n    <ion-input [(ngModel)]=\"entryTitle\" maxlength=\"50\"></ion-input>\n\n<ion-item style=\"width: calc(100% - 40px); --padding-start: 0; margin: 10px 0;\">\n  <ion-label>Start</ion-label>\n  <ion-datetime displayFormat=\"HH:mm\" minuteValues=\"0,15,30,45\" value=\"12:00\" (ionChange)=\"changeEndHourValues()\" #starting></ion-datetime>\n</ion-item>\n<ion-item style=\"width: calc(100% - 40px); --padding-start: 0; margin: 10px 0;\" lines=\"none\">\n  <ion-label>End</ion-label>\n  <ion-datetime displayFormat=\"HH:mm\" minuteValues=\"0,15,30,45\" value=\"12:15\" (ionChange)=\"endHoursSelected()\" #ending></ion-datetime>\n</ion-item>\n  </div>  \n</div>\n\n<ion-footer class=\"ion-no-border\" style=\"margin-bottom: 10px;\">\n  <ion-button expand=\"block\" style=\"padding: 0 10px;\" (click)=\"addNew()\" [disabled]=\"entryTitle === '' \">Save</ion-button>\n</ion-footer>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/questionnaire/questionnaire.page.html":
+  /*!*********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/questionnaire/questionnaire.page.html ***!
+    \*********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppQuestionnaireQuestionnairePageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\">\n  <div class=\"page-wrapper\">\n  <div id=\"header\">\n    <ion-row>\n      <ion-col size-md=\"8\" offset-md=\"2\" size-xs=\"12\"><h1 style=\"color: white;\n        margin-left: 20px;\n        margin-top: 16vh;\n        font-size: 30px;\n        max-width: calc(100vw - 40px);\"><span style=\"font-size: 15px;\">SURVEY</span><br>Influence of COVID-19 on remote work</h1></ion-col>\n    </ion-row>\n  </div>\n\n  <ion-grid style=\"padding-bottom: 300px;\">\n    <ion-row>\n      <ion-col size-xs=\"12\" size-md=\"8\" offset-md=\"2\" size-lg=\"6\" offset-lg=\"3\" style=\"margin-top: 30px;\">\n          <!-- PROGRESS BAR -->\n          <span class=\"progress-counter\">Question {{questionCounter}}</span>\n          <div class=\"progress-container\">\n            <div class=\"progress-slider\" [style.width]=\"getProgress() + '%'\"></div>\n          </div>\n      <div *ngIf=\"alreadyFilledOut === false \">\n        <div *ngFor=\"let question of questionStack; let i = index;\">\n          <section *ngIf=\"currentSlide === question.questionId\" class=\"opacityAnimation\">\n            <h2>{{question.questionTitle}}</h2>\n            <p class=\"subtitle\">{{question?.questionSubtitle}}</p>\n            <div *ngIf=\"question.questionType === 'SLIDER'\">\n              \n              <div class=\"slidecontainer\">\n                <input type=\"range\" [min]=\"question.questionAnswers[0]\" [max]=\"question.questionAnswers[1]\" [(ngModel)]=\"currentAnswer\" class=\"slider\">\n                <p class=\"scale left\">\n                  {{question.lowest}}\n                </p>\n                <p class=\"scale right\">\n                  {{question.highest}}\n                </p>\n              </div>\n              <p><b>Your answer:</b> {{currentAnswer || \"-\"}}</p>\n            </div>\n\n            <div *ngIf=\"question.questionType === 'BOOL'\">\n              <ion-radio-group [(ngModel)]=\"currentAnswer\">\n                <ion-item lines=\"none\">\n                  <ion-label>Ja</ion-label>\n                  <ion-radio slot=\"start\" color=\"primary\" value=\"yes\" mode=\"md\"></ion-radio>\n                </ion-item>\n\n                <ion-item lines=\"none\">\n                  <ion-label>Nein</ion-label>\n                  <ion-radio slot=\"start\" color=\"primary\" value=\"no\" mode=\"md\"></ion-radio>\n                </ion-item>\n              </ion-radio-group>\n            </div>\n\n            <div *ngIf=\"question.questionType === 'SINGLECHOICE'\">\n              <ion-radio-group [(ngModel)]=\"currentAnswer\">\n                <ion-item lines=\"none\" *ngFor=\"let option of question.options; let y = index;\">\n                  <ion-label>{{option}}</ion-label>\n                  <ion-radio slot=\"start\" color=\"primary\" [value]=\"option\" mode=\"md\"></ion-radio>\n                </ion-item>\n              </ion-radio-group>\n            </div>\n\n            <div *ngIf=\"question.questionType === 'MULTIPLECHOICE'\">\n                <ion-item lines=\"none\" *ngFor=\"let option of question.questionAnswers; let y = index;\">\n                  <ion-label>{{option}}</ion-label>\n                  <ion-checkbox *ngIf=\"question.questionAnswers[0] === 'Keine'\" slot=\"start\" color=\"primary\" [value]=\"'option-' + y\" [disabled]=\"currentAnswerArray[0] === true && y != 0\" [checked]=\"currentAnswerArray[0] === true && y != 0 ? false : true\" mode=\"md\" [(ngModel)]=\"currentAnswerArray[y]\"></ion-checkbox>\n                  <ion-checkbox *ngIf=\"question.questionAnswers[0] != 'Keine'\" slot=\"start\" color=\"primary\" [value]=\"'option-' + y\" mode=\"md\" [(ngModel)]=\"currentAnswerArray[y]\"></ion-checkbox>\n                </ion-item>\n                <div *ngIf=\"question.optionalTextfield === true\">\n                  <p style=\"color: var(--ion-color-medium); margin: 10px 0;\">Other (optional):</p>\n                  <textarea [(ngModel)]=\"currentAnswer\">\n                  </textarea>\n                </div>\n            </div>\n\n            <div *ngIf=\"question.questionType === 'TEXT'\">\n              <textarea [(ngModel)]=\"currentAnswer\">\n              </textarea>\n            </div>\n\n            <div *ngIf=\"question.questionType === 'CALENDAR'\">\n            <ion-chip color=\"primary\" *ngFor=\"let option of dailyOrganisationOptions; let y = index;\" (click)=\"presentTimetableEntry(option.title, option.icon)\">\n                <ion-icon [name]=\"option.icon\"></ion-icon>\n                <ion-label>{{option.title}}</ion-label>\n              </ion-chip>\n              <div *ngFor=\"let hour of dailyOrganisationArray; let y = index;\">\n              <ion-row>\n                <ion-col size=\"1\" class=\"calendar-entries-hour\">\n                  <span>{{hour.id}}:00</span>\n                </ion-col>\n                <ion-col size=\"11\" class=\"calendar-entries\">\n                  <span class=\"empty\" *ngIf=\"hour.entries.length === 0\" >No entries added</span>\n                  <ion-chip color=\"primary\" outline=\"true\" *ngFor=\"let entry of hour.entries; let y = index;\" (click)=\"deleteTimetableEntry(entry.name, hour.id)\">\n                    <ion-icon [name]=\"entry.icon\"></ion-icon>\n                    <ion-label>{{entry.name}}</ion-label>\n                    <ion-icon name=\"close\"></ion-icon>\n                  </ion-chip>\n                </ion-col>\n              </ion-row>\n              \n              </div>\n            </div>\n\n          </section>\n          <ion-button *ngIf=\"currentSlide === question.questionId\" color=\"primary\" class=\"nextSection\" mode=\"ios\" [disabled]=\"currentAnswer === null &&  currentAnswerArray.length === 0 || currentAnswer === '' && currentAnswerArray.length === 0\"\n          (click)=\"goToNextSlide()\">Next</ion-button>\n        </div>\n      </div>\n\n        <div *ngIf=\"currentSlide > questionStack.length && currentSlide != 1\">\n          <h2>Thank you!</h2>\n          Thank you for taking part on our survey. We will keep the data safe. After the study is completed, your data will be deleted.\n          \n        </div>\n        <div *ngIf=\"alreadyFilledOut === true && respondentToken != ''\">\n          <h2>Thank you!</h2>\n          Thank you for taking part on our survey. We will keep the data safe. After the study is completed, your data will be deleted.\n          <br><br><b>Unfortunately you can fill it out only once.</b>\n        </div>\n        \n        \n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <div id=\"footer\">\n    <span>© 2020 Igor Lapinski. Alle Rechte vorbehalten.\n    <br><a href=\"/#/datenschutz/\" target=\"_blank\">Datenschutz</a> • <a href=\"/#/datenschutz/\" target=\"_blank\">Impressum</a></span>\n  </div>\n  </div>\n \n</ion-content>\n";
+    /***/
+  },
+
+  /***/
+  "./src/app/components/components.module.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/components/components.module.ts ***!
+    \*************************************************/
+
+  /*! exports provided: ComponentsModule */
+
+  /***/
+  function srcAppComponentsComponentsModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ComponentsModule", function () {
+      return ComponentsModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./timetable-entry/timetable-entry.component */
+    "./src/app/components/timetable-entry/timetable-entry.component.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+
+    let ComponentsModule = class ComponentsModule {};
+    ComponentsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"].forRoot(), _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]],
+      declarations: [_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_2__["TimetableEntryComponent"]],
+      exports: [_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_2__["TimetableEntryComponent"]],
+      entryComponents: []
+    })], ComponentsModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/components/timetable-entry/timetable-entry-class.ts":
+  /*!*********************************************************************!*\
+    !*** ./src/app/components/timetable-entry/timetable-entry-class.ts ***!
+    \*********************************************************************/
+
+  /*! exports provided: Entry */
+
+  /***/
+  function srcAppComponentsTimetableEntryTimetableEntryClassTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Entry", function () {
+      return Entry;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    class Entry {
+      constructor(name, start, end, icon) {
+        this.name = name;
+        this.start = start;
+        this.end = end;
+        this.icon = icon;
+        const splittedStart = this.start.split(':');
+        this.startHour = splittedStart[0];
+        const splittedEnd = this.end.split(':');
+        this.endHour = splittedEnd[0];
+      }
+
+      getHours() {
+        const difference = this.endHour - this.startHour;
+        return difference;
+      }
+
+      getNegativeHours() {
+        const difference = Math.abs(this.startHour - this.endHour - 24);
+        return difference;
+      }
+
+    }
+    /***/
+
+  },
+
+  /***/
+  "./src/app/components/timetable-entry/timetable-entry.component.scss":
+  /*!***************************************************************************!*\
+    !*** ./src/app/components/timetable-entry/timetable-entry.component.scss ***!
+    \***************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppComponentsTimetableEntryTimetableEntryComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".content {\n  position: absolute;\n  left: 20px;\n  width: 100%;\n}\n\nion-input {\n  padding: 0px 10px !important;\n  background: white;\n  border-radius: 10px;\n  border: solid 1px #00000030;\n  outline: none !important;\n  width: calc(100% - 40px);\n}\n\n.title {\n  font-weight: 600;\n  margin-bottom: 8px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9pbGFwaW5za2kvRGVza3RvcC9DT0RFL01vZHVsZXMvVXNlclJlc2VhcmNoL3VyLWNvdmlkLXN1cnZleS5ub3N5bmMvc3JjL2FwcC9jb21wb25lbnRzL3RpbWV0YWJsZS1lbnRyeS90aW1ldGFibGUtZW50cnkuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvdGltZXRhYmxlLWVudHJ5L3RpbWV0YWJsZS1lbnRyeS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0VBQ0EsVUFBQTtFQUNBLFdBQUE7QUNDSjs7QURDQTtFQUNJLDRCQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLDJCQUFBO0VBQ0Esd0JBQUE7RUFDQSx3QkFBQTtBQ0VKOztBRENBO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtBQ0VKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy90aW1ldGFibGUtZW50cnkvdGltZXRhYmxlLWVudHJ5LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRlbnQge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBsZWZ0OiAyMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xufVxuaW9uLWlucHV0IHtcbiAgICBwYWRkaW5nOiAwcHggMTBweCAhaW1wb3J0YW50O1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgYm9yZGVyOiBzb2xpZCAxcHggIzAwMDAwMDMwO1xuICAgIG91dGxpbmU6IG5vbmUgIWltcG9ydGFudDtcbiAgICB3aWR0aDogY2FsYygxMDAlIC0gNDBweCk7XG4gIH1cblxuLnRpdGxle1xuICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgbWFyZ2luLWJvdHRvbTogOHB4O1xufVxuIiwiLmNvbnRlbnQge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDIwcHg7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG5pb24taW5wdXQge1xuICBwYWRkaW5nOiAwcHggMTBweCAhaW1wb3J0YW50O1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYm9yZGVyOiBzb2xpZCAxcHggIzAwMDAwMDMwO1xuICBvdXRsaW5lOiBub25lICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiBjYWxjKDEwMCUgLSA0MHB4KTtcbn1cblxuLnRpdGxlIHtcbiAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgbWFyZ2luLWJvdHRvbTogOHB4O1xufSJdfQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/components/timetable-entry/timetable-entry.component.ts":
+  /*!*************************************************************************!*\
+    !*** ./src/app/components/timetable-entry/timetable-entry.component.ts ***!
+    \*************************************************************************/
+
+  /*! exports provided: TimetableEntryComponent */
+
+  /***/
+  function srcAppComponentsTimetableEntryTimetableEntryComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TimetableEntryComponent", function () {
+      return TimetableEntryComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _timetable_entry_class__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./timetable-entry-class */
+    "./src/app/components/timetable-entry/timetable-entry-class.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+
+    let TimetableEntryComponent = class TimetableEntryComponent {
+      constructor(modalCtrl, navParams) {
+        this.modalCtrl = modalCtrl;
+        this.navParams = navParams;
+        this.endHourValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+        this.endHoursSelectedBool = false;
+        this.entryTitle = this.navParams.data.name;
+        this.entryIcon = this.navParams.data.icon;
+      }
+
+      ngOnInit() {}
+
+      dismiss() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+          yield this.modalCtrl.dismiss();
+        });
+      }
+
+      addNew() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+          yield this.modalCtrl.dismiss(new _timetable_entry_class__WEBPACK_IMPORTED_MODULE_1__["Entry"](this.entryTitle, this.startingElement.value, this.endingElement.value, this.entryIcon));
+        });
+      }
+
+      changeEndHourValues() {
+        // this.endHourValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+        // this.endHourValues = this.endHourValues.filter(hour => hour + 1 > Number(this.startingElement.value.split(':')[0]));
+        // if (Number(this.endingElement.value.split(':')[0]) < Number(this.startingElement.value.split(':')[0])) {
+        // this.endingElement.value = this.startingElement.value;
+        // console.log(this.endHourValues)
+        // tslint:disable-next-line: max-line-length
+        // }
+        console.log({
+          0: this.endingElement
+        });
+      }
+
+      endHoursSelected() {
+        this.endHoursSelectedBool = true;
+      }
+
+    };
+
+    TimetableEntryComponent.ctorParameters = () => [{
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]
+    }, {
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]
+    }];
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])('starting', {
+      static: true
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonDatetime"])], TimetableEntryComponent.prototype, "startingElement", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])('ending', {
+      static: true
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonDatetime"])], TimetableEntryComponent.prototype, "endingElement", void 0);
+    TimetableEntryComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+      selector: 'app-timetable-entry',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./timetable-entry.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/components/timetable-entry/timetable-entry.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./timetable-entry.component.scss */
+      "./src/app/components/timetable-entry/timetable-entry.component.scss")).default]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavParams"]])], TimetableEntryComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/questionnaire/questionnaire-routing.module.ts":
+  /*!***************************************************************!*\
+    !*** ./src/app/questionnaire/questionnaire-routing.module.ts ***!
+    \***************************************************************/
+
+  /*! exports provided: QuestionnairePageRoutingModule */
+
+  /***/
+  function srcAppQuestionnaireQuestionnaireRoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "QuestionnairePageRoutingModule", function () {
+      return QuestionnairePageRoutingModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _questionnaire_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./questionnaire.page */
+    "./src/app/questionnaire/questionnaire.page.ts");
+
+    const routes = [{
+      path: '',
+      component: _questionnaire_page__WEBPACK_IMPORTED_MODULE_3__["QuestionnairePage"]
+    }];
+    let QuestionnairePageRoutingModule = class QuestionnairePageRoutingModule {};
+    QuestionnairePageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+      exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })], QuestionnairePageRoutingModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/questionnaire/questionnaire.module.ts":
+  /*!*******************************************************!*\
+    !*** ./src/app/questionnaire/questionnaire.module.ts ***!
+    \*******************************************************/
+
+  /*! exports provided: QuestionnairePageModule */
+
+  /***/
+  function srcAppQuestionnaireQuestionnaireModuleTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "QuestionnairePageModule", function () {
+      return QuestionnairePageModule;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _components_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./../components/timetable-entry/timetable-entry.component */
+    "./src/app/components/timetable-entry/timetable-entry.component.ts");
+    /* harmony import */
+
+
+    var _components_components_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./../components/components.module */
+    "./src/app/components/components.module.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var _questionnaire_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./questionnaire-routing.module */
+    "./src/app/questionnaire/questionnaire-routing.module.ts");
+    /* harmony import */
+
+
+    var _questionnaire_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./questionnaire.page */
+    "./src/app/questionnaire/questionnaire.page.ts");
+
+    let QuestionnairePageModule = class QuestionnairePageModule {};
+    QuestionnairePageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"], _questionnaire_routing_module__WEBPACK_IMPORTED_MODULE_7__["QuestionnairePageRoutingModule"], _components_components_module__WEBPACK_IMPORTED_MODULE_2__["ComponentsModule"]],
+      declarations: [_questionnaire_page__WEBPACK_IMPORTED_MODULE_8__["QuestionnairePage"]],
+      entryComponents: [_components_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_1__["TimetableEntryComponent"]]
+    })], QuestionnairePageModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/questionnaire/questionnaire.page.scss":
+  /*!*******************************************************!*\
+    !*** ./src/app/questionnaire/questionnaire.page.scss ***!
+    \*******************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppQuestionnaireQuestionnairePageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".progress-counter {\n  color: var(--ion-color-medium-tint);\n  font-size: 14px;\n}\n\n.progress-container {\n  width: 100%;\n  height: 15px;\n  background-color: #00000008;\n  border-radius: 20px;\n  position: relative;\n  margin-bottom: 30px;\n  margin-top: 10px;\n}\n\n.progress-container .progress-slider {\n  position: absolute;\n  background-color: var(--ion-color-primary);\n  height: 100%;\n  border-radius: 20px;\n  max-width: 100%;\n}\n\nion-item {\n  border-radius: 15px;\n  --background-hover: var(--ion-color-primary);\n  --background-hover-opacity: 0.15;\n}\n\nion-item:active {\n  border-radius: 15px;\n  --background-hover: var(--ion-color-primary);\n  --background-hover-opacity: 0.15;\n}\n\nion-item:hover {\n  border-radius: 15px;\n  --background-hover: var(--ion-color-primary);\n  --background-hover-opacity: 0.15;\n}\n\nion-button.nextSection {\n  margin-top: 30px;\n  position: absolute;\n  left: 50%;\n  -webkit-transform: translateX(-50%);\n          transform: translateX(-50%);\n  width: 400px;\n  max-width: 90vw;\n}\n\np.subtitle {\n  color: var(--ion-color-medium);\n}\n\ntextarea {\n  padding: 10px;\n  background: white;\n  border-radius: 10px;\n  border: solid 1px #00000030;\n  max-width: 100%;\n  min-width: 100%;\n  max-height: 350px;\n  min-height: 100px;\n  outline: none !important;\n}\n\nion-input {\n  padding: 10px;\n  background: white;\n  border-radius: 10px;\n  border: solid 1px #00000030;\n  outline: none !important;\n}\n\nselect {\n  background: white;\n  border-radius: 10px;\n  border: solid 1px #00000030;\n  height: 40px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: pointer;\n  width: 400px;\n  max-width: 90vw;\n  outline: none !important;\n}\n\ndiv.slidecontainer {\n  width: 100%;\n  margin-bottom: 50px;\n}\n\np.scale {\n  position: absolute;\n  margin-top: 10px;\n  color: var(--ion-color-medium);\n  font-size: 13px;\n}\n\np.scale.left {\n  left: 7px;\n}\n\np.scale.right {\n  right: 7px;\n}\n\n.slider {\n  -webkit-appearance: none;\n  width: 100%;\n  height: 14px;\n  background: #00000010;\n  border-radius: 20px;\n  outline: none;\n  opacity: 0.7;\n  -webkit-transition: 0.2s;\n  -webkit-transition: opacity 0.2s;\n  transition: opacity 0.2s;\n}\n\n.slider:hover {\n  opacity: 1;\n}\n\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 25px;\n  height: 25px;\n  background: var(--ion-color-primary);\n  border-radius: 20px;\n  cursor: pointer;\n}\n\n.slider::-moz-range-thumb {\n  width: 25px;\n  height: 25px;\n  background: var(--ion-color-primary);\n  border-radius: 20px;\n  cursor: pointer;\n}\n\n.opacityAnimation {\n  -webkit-animation-name: opacityAnimation;\n          animation-name: opacityAnimation;\n  -webkit-animation-duration: 1s;\n          animation-duration: 1s;\n}\n\n@-webkit-keyframes opacityAnimation {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n\n@keyframes opacityAnimation {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n\n.calendar-entries-hour {\n  text-align: right;\n  font-size: 13px;\n  color: var(--ion-color-medium);\n}\n\n.calendar-entries-hour span {\n  position: absolute;\n  right: 5px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n\n.calendar-entries {\n  border-bottom: solid 1px var(--ion-color-light-shade);\n  padding: 10px;\n}\n\n.calendar-entries .empty {\n  color: var(--ion-color-medium);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9pbGFwaW5za2kvRGVza3RvcC9DT0RFL01vZHVsZXMvVXNlclJlc2VhcmNoL3VyLWNvdmlkLXN1cnZleS5ub3N5bmMvc3JjL2FwcC9xdWVzdGlvbm5haXJlL3F1ZXN0aW9ubmFpcmUucGFnZS5zY3NzIiwic3JjL2FwcC9xdWVzdGlvbm5haXJlL3F1ZXN0aW9ubmFpcmUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUNBQUE7RUFDQSxlQUFBO0FDQ0o7O0FEQ0E7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLDJCQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQVNBLG1CQUFBO0VBQ0EsZ0JBQUE7QUNOSjs7QURGSTtFQUNJLGtCQUFBO0VBQ0EsMENBQUE7RUFDQSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0FDSVI7O0FERUE7RUFDSSxtQkFBQTtFQUNBLDRDQUFBO0VBQ0EsZ0NBQUE7QUNDSjs7QURFQTtFQUNFLG1CQUFBO0VBQ0EsNENBQUE7RUFDQSxnQ0FBQTtBQ0NGOztBRENBO0VBQ0UsbUJBQUE7RUFDQSw0Q0FBQTtFQUNBLGdDQUFBO0FDRUY7O0FEQ0E7RUFDRSxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsU0FBQTtFQUNBLG1DQUFBO1VBQUEsMkJBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtBQ0VGOztBRENBO0VBQ0UsOEJBQUE7QUNFRjs7QURDQTtFQUNFLGFBQUE7RUFDQSxpQkFBQTtFQUNBLG1CQUFBO0VBQ0EsMkJBQUE7RUFDQSxlQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSx3QkFBQTtBQ0VGOztBRENBO0VBQ0UsYUFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSwyQkFBQTtFQUNBLHdCQUFBO0FDRUY7O0FEQ0E7RUFDRSxpQkFBQTtFQUNBLG1CQUFBO0VBQ0EsMkJBQUE7RUFDQSxZQUFBO0VBQ0EseUJBQUE7S0FBQSxzQkFBQTtNQUFBLHFCQUFBO1VBQUEsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLGVBQUE7RUFDQSx3QkFBQTtBQ0VGOztBRENBO0VBQ0UsV0FBQTtFQUNBLG1CQUFBO0FDRUY7O0FEQ0E7RUFDRSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsOEJBQUE7RUFDQSxlQUFBO0FDRUY7O0FEQUU7RUFDRSxTQUFBO0FDRUo7O0FEQUU7RUFDRSxVQUFBO0FDRUo7O0FERUE7RUFDRSx3QkFBQTtFQUNBLFdBQUE7RUFDQSxZQUFBO0VBQ0EscUJBQUE7RUFDQSxtQkFBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0VBQ0Esd0JBQUE7RUFDQSxnQ0FBQTtFQUFBLHdCQUFBO0FDQ0Y7O0FERUE7RUFDRSxVQUFBO0FDQ0Y7O0FERUE7RUFDRSx3QkFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxvQ0FBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7RUFDQSxvQ0FBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0ksd0NBQUE7VUFBQSxnQ0FBQTtFQUNBLDhCQUFBO1VBQUEsc0JBQUE7QUNDSjs7QURFQTtFQUNJO0lBQU0sVUFBQTtFQ0VSO0VEREU7SUFBSSxVQUFBO0VDSU47QUFDRjs7QURQQTtFQUNJO0lBQU0sVUFBQTtFQ0VSO0VEREU7SUFBSSxVQUFBO0VDSU47QUFDRjs7QURGQTtFQUNFLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLDhCQUFBO0FDSUY7O0FERkU7RUFDRSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxRQUFBO0VBQ0EsbUNBQUE7VUFBQSwyQkFBQTtBQ0lKOztBRERBO0VBQ0UscURBQUE7RUFDQSxhQUFBO0FDSUY7O0FERkU7RUFDRSw4QkFBQTtBQ0lKIiwiZmlsZSI6InNyYy9hcHAvcXVlc3Rpb25uYWlyZS9xdWVzdGlvbm5haXJlLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wcm9ncmVzcy1jb3VudGVye1xuICAgIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbWVkaXVtLXRpbnQpO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbn1cbi5wcm9ncmVzcy1jb250YWluZXJ7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiAxNXB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDAwODtcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcblxuICAgIC5wcm9ncmVzcy1zbGlkZXJ7XG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAgICAgICBoZWlnaHQ6IDEwMCU7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gICAgICAgIG1heC13aWR0aDogMTAwJTtcbiAgICB9XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG5pb24taXRlbSB7XG4gICAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgICAtLWJhY2tncm91bmQtaG92ZXItb3BhY2l0eTogMC4xNTtcbn1cblxuaW9uLWl0ZW06YWN0aXZlIHtcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgLS1iYWNrZ3JvdW5kLWhvdmVyOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4gIC0tYmFja2dyb3VuZC1ob3Zlci1vcGFjaXR5OiAwLjE1O1xufVxuaW9uLWl0ZW06aG92ZXIge1xuICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1iYWNrZ3JvdW5kLWhvdmVyLW9wYWNpdHk6IDAuMTU7XG59XG5cbmlvbi1idXR0b24ubmV4dFNlY3Rpb24ge1xuICBtYXJnaW4tdG9wOiAzMHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC01MCUpO1xuICB3aWR0aDogNDAwcHg7XG4gIG1heC13aWR0aDogOTB2dztcbn1cblxucC5zdWJ0aXRsZSB7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbWVkaXVtKTtcbn1cblxudGV4dGFyZWEge1xuICBwYWRkaW5nOiAxMHB4O1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYm9yZGVyOiBzb2xpZCAxcHggIzAwMDAwMDMwO1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIG1pbi13aWR0aDogMTAwJTtcbiAgbWF4LWhlaWdodDogMzUwcHg7XG4gIG1pbi1oZWlnaHQ6IDEwMHB4O1xuICBvdXRsaW5lOiBub25lICFpbXBvcnRhbnQ7XG59XG5cbmlvbi1pbnB1dCB7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJhY2tncm91bmQ6IHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICBib3JkZXI6IHNvbGlkIDFweCAjMDAwMDAwMzA7XG4gIG91dGxpbmU6IG5vbmUgIWltcG9ydGFudDtcbn1cblxuc2VsZWN0IHtcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gIGJvcmRlcjogc29saWQgMXB4ICMwMDAwMDAzMDtcbiAgaGVpZ2h0OiA0MHB4O1xuICB1c2VyLXNlbGVjdDogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB3aWR0aDogNDAwcHg7XG4gIG1heC13aWR0aDogOTB2dztcbiAgb3V0bGluZTogbm9uZSAhaW1wb3J0YW50O1xufVxuXG5kaXYuc2xpZGVjb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbiAgbWFyZ2luLWJvdHRvbTogNTBweDtcbn1cblxucC5zY2FsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1tZWRpdW0pO1xuICBmb250LXNpemU6IDEzcHg7XG5cbiAgJi5sZWZ0IHtcbiAgICBsZWZ0OiA3cHg7XG4gIH1cbiAgJi5yaWdodCB7XG4gICAgcmlnaHQ6IDdweDtcbiAgfVxufVxuXG4uc2xpZGVyIHtcbiAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxNHB4O1xuICBiYWNrZ3JvdW5kOiAjMDAwMDAwMTA7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIG91dGxpbmU6IG5vbmU7XG4gIG9wYWNpdHk6IDAuNztcbiAgLXdlYmtpdC10cmFuc2l0aW9uOiAwLjJzO1xuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuMnM7XG59XG5cbi5zbGlkZXI6aG92ZXIge1xuICBvcGFjaXR5OiAxO1xufVxuXG4uc2xpZGVyOjotd2Via2l0LXNsaWRlci10aHVtYiB7XG4gIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcbiAgYXBwZWFyYW5jZTogbm9uZTtcbiAgd2lkdGg6IDI1cHg7XG4gIGhlaWdodDogMjVweDtcbiAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5zbGlkZXI6Oi1tb3otcmFuZ2UtdGh1bWIge1xuICB3aWR0aDogMjVweDtcbiAgaGVpZ2h0OiAyNXB4O1xuICBiYWNrZ3JvdW5kOiB2YXIoLS1pb24tY29sb3ItcHJpbWFyeSk7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLm9wYWNpdHlBbmltYXRpb24ge1xuICAgIGFuaW1hdGlvbi1uYW1lOiBvcGFjaXR5QW5pbWF0aW9uO1xuICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XG59XG5cbkBrZXlmcmFtZXMgb3BhY2l0eUFuaW1hdGlvbiB7XG4gICAgZnJvbSB7b3BhY2l0eTogMDt9XG4gICAgdG8ge29wYWNpdHk6IDE7fVxuICB9XG5cbi5jYWxlbmRhci1lbnRyaWVzLWhvdXIge1xuICB0ZXh0LWFsaWduOiByaWdodDtcbiAgZm9udC1zaXplOiAxM3B4O1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLW1lZGl1bSk7XG5cbiAgc3BhbiB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHJpZ2h0OiA1cHg7XG4gICAgdG9wOiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MCUpO1xuICB9XG59XG4uY2FsZW5kYXItZW50cmllcyB7XG4gIGJvcmRlci1ib3R0b206IHNvbGlkIDFweCB2YXIoLS1pb24tY29sb3ItbGlnaHQtc2hhZGUpO1xuICBwYWRkaW5nOiAxMHB4O1xuXG4gIC5lbXB0eXtcbiAgICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLW1lZGl1bSk7XG4gIH1cbn0iLCIucHJvZ3Jlc3MtY291bnRlciB7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbWVkaXVtLXRpbnQpO1xuICBmb250LXNpemU6IDE0cHg7XG59XG5cbi5wcm9ncmVzcy1jb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxNXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwMDAwMDg7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cbi5wcm9ncmVzcy1jb250YWluZXIgLnByb2dyZXNzLXNsaWRlciB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gIG1heC13aWR0aDogMTAwJTtcbn1cblxuaW9uLWl0ZW0ge1xuICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1iYWNrZ3JvdW5kLWhvdmVyLW9wYWNpdHk6IDAuMTU7XG59XG5cbmlvbi1pdGVtOmFjdGl2ZSB7XG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gIC0tYmFja2dyb3VuZC1ob3ZlcjogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICAtLWJhY2tncm91bmQtaG92ZXItb3BhY2l0eTogMC4xNTtcbn1cblxuaW9uLWl0ZW06aG92ZXIge1xuICBib3JkZXItcmFkaXVzOiAxNXB4O1xuICAtLWJhY2tncm91bmQtaG92ZXI6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgLS1iYWNrZ3JvdW5kLWhvdmVyLW9wYWNpdHk6IDAuMTU7XG59XG5cbmlvbi1idXR0b24ubmV4dFNlY3Rpb24ge1xuICBtYXJnaW4tdG9wOiAzMHB4O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGxlZnQ6IDUwJTtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC01MCUpO1xuICB3aWR0aDogNDAwcHg7XG4gIG1heC13aWR0aDogOTB2dztcbn1cblxucC5zdWJ0aXRsZSB7XG4gIGNvbG9yOiB2YXIoLS1pb24tY29sb3ItbWVkaXVtKTtcbn1cblxudGV4dGFyZWEge1xuICBwYWRkaW5nOiAxMHB4O1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgYm9yZGVyOiBzb2xpZCAxcHggIzAwMDAwMDMwO1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIG1pbi13aWR0aDogMTAwJTtcbiAgbWF4LWhlaWdodDogMzUwcHg7XG4gIG1pbi1oZWlnaHQ6IDEwMHB4O1xuICBvdXRsaW5lOiBub25lICFpbXBvcnRhbnQ7XG59XG5cbmlvbi1pbnB1dCB7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJhY2tncm91bmQ6IHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICBib3JkZXI6IHNvbGlkIDFweCAjMDAwMDAwMzA7XG4gIG91dGxpbmU6IG5vbmUgIWltcG9ydGFudDtcbn1cblxuc2VsZWN0IHtcbiAgYmFja2dyb3VuZDogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gIGJvcmRlcjogc29saWQgMXB4ICMwMDAwMDAzMDtcbiAgaGVpZ2h0OiA0MHB4O1xuICB1c2VyLXNlbGVjdDogbm9uZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICB3aWR0aDogNDAwcHg7XG4gIG1heC13aWR0aDogOTB2dztcbiAgb3V0bGluZTogbm9uZSAhaW1wb3J0YW50O1xufVxuXG5kaXYuc2xpZGVjb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbiAgbWFyZ2luLWJvdHRvbTogNTBweDtcbn1cblxucC5zY2FsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luLXRvcDogMTBweDtcbiAgY29sb3I6IHZhcigtLWlvbi1jb2xvci1tZWRpdW0pO1xuICBmb250LXNpemU6IDEzcHg7XG59XG5wLnNjYWxlLmxlZnQge1xuICBsZWZ0OiA3cHg7XG59XG5wLnNjYWxlLnJpZ2h0IHtcbiAgcmlnaHQ6IDdweDtcbn1cblxuLnNsaWRlciB7XG4gIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTRweDtcbiAgYmFja2dyb3VuZDogIzAwMDAwMDEwO1xuICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICBvdXRsaW5lOiBub25lO1xuICBvcGFjaXR5OiAwLjc7XG4gIC13ZWJraXQtdHJhbnNpdGlvbjogMC4ycztcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjJzO1xufVxuXG4uc2xpZGVyOmhvdmVyIHtcbiAgb3BhY2l0eTogMTtcbn1cblxuLnNsaWRlcjo6LXdlYmtpdC1zbGlkZXItdGh1bWIge1xuICAtd2Via2l0LWFwcGVhcmFuY2U6IG5vbmU7XG4gIGFwcGVhcmFuY2U6IG5vbmU7XG4gIHdpZHRoOiAyNXB4O1xuICBoZWlnaHQ6IDI1cHg7XG4gIGJhY2tncm91bmQ6IHZhcigtLWlvbi1jb2xvci1wcmltYXJ5KTtcbiAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uc2xpZGVyOjotbW96LXJhbmdlLXRodW1iIHtcbiAgd2lkdGg6IDI1cHg7XG4gIGhlaWdodDogMjVweDtcbiAgYmFja2dyb3VuZDogdmFyKC0taW9uLWNvbG9yLXByaW1hcnkpO1xuICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5vcGFjaXR5QW5pbWF0aW9uIHtcbiAgYW5pbWF0aW9uLW5hbWU6IG9wYWNpdHlBbmltYXRpb247XG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMXM7XG59XG5cbkBrZXlmcmFtZXMgb3BhY2l0eUFuaW1hdGlvbiB7XG4gIGZyb20ge1xuICAgIG9wYWNpdHk6IDA7XG4gIH1cbiAgdG8ge1xuICAgIG9wYWNpdHk6IDE7XG4gIH1cbn1cbi5jYWxlbmRhci1lbnRyaWVzLWhvdXIge1xuICB0ZXh0LWFsaWduOiByaWdodDtcbiAgZm9udC1zaXplOiAxM3B4O1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLW1lZGl1bSk7XG59XG4uY2FsZW5kYXItZW50cmllcy1ob3VyIHNwYW4ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiA1cHg7XG4gIHRvcDogNTAlO1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTUwJSk7XG59XG5cbi5jYWxlbmRhci1lbnRyaWVzIHtcbiAgYm9yZGVyLWJvdHRvbTogc29saWQgMXB4IHZhcigtLWlvbi1jb2xvci1saWdodC1zaGFkZSk7XG4gIHBhZGRpbmc6IDEwcHg7XG59XG4uY2FsZW5kYXItZW50cmllcyAuZW1wdHkge1xuICBjb2xvcjogdmFyKC0taW9uLWNvbG9yLW1lZGl1bSk7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/questionnaire/questionnaire.page.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/questionnaire/questionnaire.page.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: QuestionnairePage */
+
+  /***/
+  function srcAppQuestionnaireQuestionnairePageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "QuestionnairePage", function () {
+      return QuestionnairePage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _components_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./../components/timetable-entry/timetable-entry.component */
+    "./src/app/components/timetable-entry/timetable-entry.component.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/fesm2015/ionic-angular.js"); // tslint:disable: max-line-length
+    // tslint:disable: prefer-for-of
+
+
+    let QuestionnairePage = class QuestionnairePage {
+      constructor(http, modalController) {
+        this.http = http;
+        this.modalController = modalController;
+        this.respondent = {
+          type: null,
+          district: null
+        };
+        this.currentSlide = 1;
+        this.questionCounter = 1;
+        this.currentAnswer = null;
+        this.currentAnswerArray = [];
+        this.questionStack = [];
+        this.answeredQuestions = [];
+        this.areResultsSended = false;
+        this.lotteryLoading = 0;
+        this.dailyOrganisationArray = [{
+          id: 4,
+          entries: []
+        }, {
+          id: 5,
+          entries: []
+        }, {
+          id: 6,
+          entries: []
+        }, {
+          id: 7,
+          entries: []
+        }, {
+          id: 8,
+          entries: []
+        }, {
+          id: 9,
+          entries: []
+        }, {
+          id: 10,
+          entries: []
+        }, {
+          id: 11,
+          entries: []
+        }, {
+          id: 12,
+          entries: []
+        }, {
+          id: 13,
+          entries: []
+        }, {
+          id: 14,
+          entries: []
+        }, {
+          id: 15,
+          entries: []
+        }, {
+          id: 16,
+          entries: []
+        }, {
+          id: 17,
+          entries: []
+        }, {
+          id: 18,
+          entries: []
+        }, {
+          id: 19,
+          entries: []
+        }, {
+          id: 20,
+          entries: []
+        }, {
+          id: 21,
+          entries: []
+        }, {
+          id: 22,
+          entries: []
+        }, {
+          id: 23,
+          entries: []
+        }, {
+          id: 0,
+          entries: []
+        }, {
+          id: 1,
+          entries: []
+        }, {
+          id: 2,
+          entries: []
+        }, {
+          id: 3,
+          entries: []
+        }];
+        this.dailyOrganisationOptions = [{
+          title: 'Preparation for the day',
+          icon: 'cafe-outline'
+        }, {
+          title: 'Break',
+          icon: 'pause-circle-outline'
+        }, {
+          title: 'Organisation',
+          icon: 'list-outline'
+        }, {
+          title: 'Checking mails',
+          icon: 'mail-outline'
+        }, {
+          title: 'Writing mails',
+          icon: 'send-outline'
+        }, {
+          title: 'Focused working',
+          icon: 'glasses-outline'
+        }, {
+          title: 'Communication with co-workers',
+          icon: 'chatbubbles-outline'
+        }, {
+          title: 'Communication with supervisors',
+          icon: 'chatbubble-outline'
+        }, {
+          title: 'Feierabend',
+          icon: 'beer-outline'
+        }, {
+          title: 'Other (specify)',
+          icon: 'rocket-outline'
+        }];
+      }
+
+      ngOnInit() {
+        this.getToken();
+        this.getQuestionStack();
+      }
+
+      sendLotteryRequest() {
+        this.lotteryErrorMsg = null;
+        this.lotteryLoading = 1;
+        const headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        const postData = {
+          mail: this.lotteryMail,
+          sessiontoken: this.respondentToken
+        };
+        this.http.post('https://ilapinski.com/api/lottery.php?s=' + this.randomString(), postData).subscribe(data => {
+          if (data.success != null) {
+            this.lotteryLoading = 2;
+          } else if (data.error != null) {
+            this.lotteryMail = "";
+            this.lotteryErrorMsg = data.error;
+            this.lotteryLoading = 0;
+          }
+        }, error => {
+          console.error(error);
+        });
+      } // SEND ANSWERS
+
+
+      sendAnswersPOST() {
+        const headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        const postData = {
+          sessiontoken: this.respondentToken,
+          respondentData: this.answeredQuestions
+        };
+        this.http.post('https://ilapinski.com/api/checkout.php?s=' + this.randomString(), postData).subscribe(data => {
+          this.areResultsSended = true;
+        }, error => {
+          console.error(error);
+        });
+      }
+
+      getToken() {
+        const headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        const postData = {
+          setter: this.makeid(5),
+          check: this.makeid(10),
+          id: this.randomString()
+        };
+        this.http.post('https://ilapinski.com/api/setup.php?s=' + this.randomString(), postData).subscribe(data => {
+          if (data.setup === 'emptyToken') {
+            this.alreadyFilledOut = true;
+          } else {
+            this.alreadyFilledOut = false;
+            this.respondentToken = data.setup;
+          }
+        }, error => {
+          console.error(error);
+        });
+      }
+      /* LOAD QUESTIONS */
+
+
+      getQuestionJSON(status) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+          return this.http.get('/assets/questions.json?session=' + this.randomString()).toPromise();
+        });
+      }
+
+      getQuestionStack() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+          this.questionStack = [];
+          const questionStackJSON = yield this.getQuestionJSON(this.respondent.type);
+
+          for (let i = 0; i < questionStackJSON.length; i++) {
+            this.questionStack.push(questionStackJSON[i]);
+          }
+        });
+      }
+
+      addToAnswerArray(usageCase, event) {
+        const title = event.target.value;
+
+        const checkIfAlreadyAdded = subjectCheck => this.currentAnswerArray.some(subject => subject === subjectCheck);
+
+        if (checkIfAlreadyAdded(title)) {
+          return;
+        }
+
+        if (usageCase === 'SUBJECTS' && (title === 'Biologie' || title === 'Chemie' || title === 'Deutsch' || title === 'Englisch' || title === 'Französisch' || title === 'Geographie' || title === 'Geschichte' || title === 'Informatik' || title === 'Latein' || title === 'Mathe' || title === 'Physik' || title === 'Spanisch')) {
+          this.currentAnswerArray.push(title);
+        }
+      }
+
+      removeFromAnswerArray(usageCase, title) {
+        if (usageCase === 'SUBJECTS' && (title === 'Biologie' || title === 'Chemie' || title === 'Deutsch' || title === 'Englisch' || title === 'Französisch' || title === 'Geographie' || title === 'Geschichte' || title === 'Informatik' || title === 'Latein' || title === 'Mathe' || title === 'Physik' || title === 'Spanisch')) {
+          for (let i = 0; i < this.currentAnswerArray.length; i++) {
+            if (this.currentAnswerArray[i] === title) {
+              this.currentAnswerArray.splice(i, 1);
+              i--;
+            }
+          }
+        }
+      }
+
+      goToNextSlide() {
+        // if (this.currentSlide >= 16) {
+        //   throw new Error('Cannot go to next slide.');
+        // }
+        // if (this.currentSlide !== 1) { // if not the first question
+        const curentQuestion = this.questionStack[this.currentSlide - 1]; // save answer
+
+        if (this.currentAnswer != null && this.currentAnswerArray != [] && this.questionStack[this.currentSlide - 1].optionalTextfield) {
+          // array with optional textfield
+          this.multipleChoice_TransformBoolToValue();
+          this.currentAnswerArray.push(this.currentAnswer);
+          this.currentAnswer = null;
+          const answer = {
+            questionId: curentQuestion.questionId,
+            answer: {
+              data: this.currentAnswerArray
+            }
+          };
+          this.answeredQuestions.push(answer);
+        } else if (this.currentAnswer === null) {
+          // only array
+          this.multipleChoice_TransformBoolToValue();
+          const answer = {
+            questionId: curentQuestion.questionId,
+            answer: {
+              data: this.currentAnswerArray
+            }
+          };
+          this.answeredQuestions.push(answer);
+        } else {
+          // without array
+          const answer = {
+            questionId: curentQuestion.questionId,
+            answer: {
+              data: this.currentAnswer
+            }
+          };
+          this.answeredQuestions.push(answer);
+        }
+
+        if (this.questionStack[this.currentSlide - 1].skipAmountIfFalse && this.currentAnswer === 'no') {
+          // skin answers
+          this.currentSlide += 1 + this.questionStack[this.currentSlide - 1].skipAmountIfFalse;
+        } else {
+          // no answers to skip
+          this.currentSlide += 1;
+        } // } else { // first question - skipping not possible
+        //   this.currentSlide += 1;
+        // }
+
+
+        this.questionCounter += 1;
+        this.currentAnswerArray = [];
+        this.currentAnswer = null; // end questionnaire
+
+        if (this.currentSlide > this.questionStack.length && this.currentSlide !== 2) {
+          const answer = {
+            questionId: 18,
+            answer: {
+              data: this.dailyOrganisationArray
+            }
+          };
+          this.answeredQuestions.push(answer);
+          this.sendAnswersPOST();
+        }
+      }
+
+      getProgress() {
+        return Math.floor((this.currentSlide - 1) / this.questionStack.length * 100);
+      }
+      /* OTHER */
+
+
+      multipleChoice_TransformBoolToValue() {
+        const curentQuestion = this.questionStack[this.currentSlide - 1];
+
+        if (curentQuestion.questionType === 'MULTIPLECHOICE') {
+          // transform boolean to values
+          const valuesArray = [];
+
+          for (let i = 0; i < this.currentAnswerArray.length; i++) {
+            if (this.currentAnswerArray[i] === true) {
+              valuesArray.push(curentQuestion.questionAnswers[i]);
+            }
+          }
+
+          if (valuesArray.length === 0) {
+            valuesArray.push("Keine");
+          }
+
+          this.currentAnswerArray = valuesArray;
+        }
+      }
+
+      makeid(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+      }
+
+      randomString() {
+        return Math.random().toString(36).substr(2, 12);
+      }
+
+      DEMOgetData() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {});
+      }
+
+      presentTimetableEntry(name, icon) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+          const modal = yield this.modalController.create({
+            component: _components_timetable_entry_timetable_entry_component__WEBPACK_IMPORTED_MODULE_1__["TimetableEntryComponent"],
+            componentProps: {
+              name,
+              icon
+            },
+            mode: 'ios',
+            swipeToClose: true
+          });
+          modal.onDidDismiss().then(dataReturned => {
+            const entry = dataReturned.data;
+
+            if (dataReturned !== null) {
+              if (Number(entry.startHour) <= Number(entry.endHour)) {
+                for (let index = 0; index < entry.getHours() + 1; index++) {
+                  const currentHour = Number(entry.startHour) + Number(index);
+                  this.dailyOrganisationArray.forEach(hour => {
+                    if (hour.id === currentHour) {
+                      hour.entries.push(entry);
+                    }
+                  });
+                }
+              } else {
+                for (let index = 0; index < entry.getNegativeHours() + 1; index++) {
+                  let currentHour = Number(entry.startHour) + Number(index);
+
+                  if (currentHour > 23) {
+                    currentHour = currentHour - 24;
+                  }
+
+                  this.dailyOrganisationArray.forEach(hour => {
+                    if (hour.id === currentHour) {
+                      hour.entries.push(entry);
+                    }
+                  });
+                }
+              }
+            }
+
+            this.currentAnswer = "dailyOrganisation";
+          });
+          return yield modal.present();
+        });
+      }
+
+      deleteTimetableEntry(entryName, entryHour) {
+        this.dailyOrganisationArray.forEach(hour => {
+          if (hour.id === entryHour) {
+            for (let index = 0; index < hour.entries.length; index++) {
+              if (hour.entries[index].name === entryName) {
+                hour.entries.splice(index, 1);
+                console.log(hour.entries);
+              }
+            }
+          }
+        });
+      }
+
+    };
+
+    QuestionnairePage.ctorParameters = () => [{
+      type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+    }, {
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]
+    }];
+
+    QuestionnairePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+      selector: 'app-questionnaire',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./questionnaire.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/questionnaire/questionnaire.page.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./questionnaire.page.scss */
+      "./src/app/questionnaire/questionnaire.page.scss")).default]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"]])], QuestionnairePage);
+    /***/
+  }
+}]);
+//# sourceMappingURL=questionnaire-questionnaire-module-es5.js.map

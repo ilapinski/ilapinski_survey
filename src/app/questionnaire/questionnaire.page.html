@@ -1,0 +1,131 @@
+<ion-content [fullscreen]="true">
+  <div class="page-wrapper">
+  <div id="header">
+    <ion-row>
+      <ion-col size-md="8" offset-md="2" size-xs="12"><h1 style="color: white;
+        margin-left: 20px;
+        margin-top: 16vh;
+        font-size: 30px;
+        max-width: calc(100vw - 40px);"><span style="font-size: 15px;">SURVEY</span><br>Influence of COVID-19 on remote work</h1></ion-col>
+    </ion-row>
+  </div>
+
+  <ion-grid style="padding-bottom: 300px;">
+    <ion-row>
+      <ion-col size-xs="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3" style="margin-top: 30px;">
+          <!-- PROGRESS BAR -->
+          <span class="progress-counter">Question {{questionCounter}}</span>
+          <div class="progress-container">
+            <div class="progress-slider" [style.width]="getProgress() + '%'"></div>
+          </div>
+      <div>
+        <div *ngFor="let question of questionStack; let i = index;">
+          <section *ngIf="currentSlide === question.questionId" class="opacityAnimation">
+            <h2>{{question.questionTitle}}</h2>
+            <p class="subtitle">{{question?.questionSubtitle}}</p>
+            <div *ngIf="question.questionType === 'SLIDER'">
+              
+              <div class="slidecontainer">
+                <input type="range" [min]="question.questionAnswers[0]" [max]="question.questionAnswers[1]" [(ngModel)]="currentAnswer" class="slider">
+                <p class="scale left">
+                  {{question.lowest}}
+                </p>
+                <p class="scale right">
+                  {{question.highest}}
+                </p>
+              </div>
+              <p><b>Your answer:</b> {{currentAnswer || "-"}}</p>
+            </div>
+
+            <div *ngIf="question.questionType === 'BOOL'">
+              <ion-radio-group [(ngModel)]="currentAnswer">
+                <ion-item lines="none">
+                  <ion-label>Ja</ion-label>
+                  <ion-radio slot="start" color="primary" value="yes" mode="md"></ion-radio>
+                </ion-item>
+
+                <ion-item lines="none">
+                  <ion-label>Nein</ion-label>
+                  <ion-radio slot="start" color="primary" value="no" mode="md"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </div>
+
+            <div *ngIf="question.questionType === 'SINGLECHOICE'">
+              <ion-radio-group [(ngModel)]="currentAnswer">
+                <ion-item lines="none" *ngFor="let option of question.options; let y = index;">
+                  <ion-label>{{option}}</ion-label>
+                  <ion-radio slot="start" color="primary" [value]="option" mode="md"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </div>
+
+            <div *ngIf="question.questionType === 'MULTIPLECHOICE'">
+                <ion-item lines="none" *ngFor="let option of question.questionAnswers; let y = index;">
+                  <ion-label>{{option}}</ion-label>
+                  <ion-checkbox *ngIf="question.questionAnswers[0] === 'Keine'" slot="start" color="primary" [value]="'option-' + y" [disabled]="currentAnswerArray[0] === true && y != 0" [checked]="currentAnswerArray[0] === true && y != 0 ? false : true" mode="md" [(ngModel)]="currentAnswerArray[y]"></ion-checkbox>
+                  <ion-checkbox *ngIf="question.questionAnswers[0] != 'Keine'" slot="start" color="primary" [value]="'option-' + y" mode="md" [(ngModel)]="currentAnswerArray[y]"></ion-checkbox>
+                </ion-item>
+                <div *ngIf="question.optionalTextfield === true">
+                  <p style="color: var(--ion-color-medium); margin: 10px 0;">Other (optional):</p>
+                  <textarea [(ngModel)]="currentAnswer">
+                  </textarea>
+                </div>
+            </div>
+
+            <div *ngIf="question.questionType === 'TEXT'">
+              <textarea [(ngModel)]="currentAnswer">
+              </textarea>
+            </div>
+
+            <div *ngIf="question.questionType === 'CALENDAR'">
+            <ion-chip color="primary" *ngFor="let option of dailyOrganisationOptions; let y = index;" (click)="presentTimetableEntry(option.title, option.icon)">
+                <ion-icon [name]="option.icon"></ion-icon>
+                <ion-label>{{option.title}}</ion-label>
+              </ion-chip>
+              <div *ngFor="let hour of dailyOrganisationArray; let y = index;">
+              <ion-row>
+                <ion-col size="1" class="calendar-entries-hour">
+                  <span>{{hour.id}}:00</span>
+                </ion-col>
+                <ion-col size="11" class="calendar-entries">
+                  <span class="empty" *ngIf="hour.entries.length === 0" >No entries added</span>
+                  <ion-chip color="primary" outline="true" *ngFor="let entry of hour.entries; let y = index;" (click)="deleteTimetableEntry(entry.name, hour.id)">
+                    <ion-icon [name]="entry.icon"></ion-icon>
+                    <ion-label>{{entry.name}}</ion-label>
+                    <ion-icon name="close"></ion-icon>
+                  </ion-chip>
+                </ion-col>
+              </ion-row>
+              
+              </div>
+            </div>
+
+          </section>
+          <ion-button *ngIf="currentSlide === question.questionId" color="primary" class="nextSection" mode="ios" [disabled]="currentAnswer === null &&  currentAnswerArray.length === 0 || currentAnswer === '' && currentAnswerArray.length === 0"
+          (click)="goToNextSlide()">Next</ion-button>
+        </div>
+      </div>
+
+        <div *ngIf="currentSlide > questionStack.length && currentSlide != 1">
+          <h2>Thank you!</h2>
+          Thank you for taking part on our survey. We will keep the data safe. After the study is completed, your data will be deleted.
+          
+        </div>
+        <div *ngIf="alreadyFilledOut === true && respondentToken != ''">
+          <h2>Thank you!</h2>
+          Thank you for taking part on our survey. We will keep the data safe. After the study is completed, your data will be deleted.
+          <br><br><b>Unfortunately you can fill it out only once.</b>
+        </div>
+        
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div id="footer">
+    <span>© 2020 Igor Lapinski. Alle Rechte vorbehalten.
+    <br><a href="/#/datenschutz/" target="_blank">Datenschutz</a> • <a href="/#/datenschutz/" target="_blank">Impressum</a></span>
+  </div>
+  </div>
+ 
+</ion-content>

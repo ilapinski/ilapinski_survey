@@ -1,0 +1,28 @@
+<ion-toolbar>
+  <ion-buttons slot="primary">
+    <ion-button (click)="dismiss()">
+      <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title>Add entry</ion-title>
+</ion-toolbar>
+<div style="position: relative; height: 100%; width: 100%;">
+  <div class="ion-text-left content" >
+    <p class="title">Title</p>
+    <ion-input [(ngModel)]="entryTitle" maxlength="50"></ion-input>
+
+<ion-item style="width: calc(100% - 40px); --padding-start: 0; margin: 10px 0;">
+  <ion-label>Start</ion-label>
+  <ion-datetime displayFormat="HH:mm" minuteValues="0,15,30,45" value="12:00" (ionChange)="changeEndHourValues()" #starting></ion-datetime>
+</ion-item>
+<ion-item style="width: calc(100% - 40px); --padding-start: 0; margin: 10px 0;" lines="none">
+  <ion-label>End</ion-label>
+  <ion-datetime displayFormat="HH:mm" minuteValues="0,15,30,45" value="12:15" (ionChange)="endHoursSelected()" #ending></ion-datetime>
+</ion-item>
+  </div>  
+</div>
+
+<ion-footer class="ion-no-border" style="margin-bottom: 10px;">
+  <ion-button expand="block" style="padding: 0 10px;" (click)="addNew()" [disabled]="entryTitle === '' ">Save</ion-button>
+</ion-footer>

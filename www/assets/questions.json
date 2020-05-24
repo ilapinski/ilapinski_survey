@@ -1,0 +1,122 @@
+[
+    {
+        "questionId": 1,
+        "questionTitle": "What is your age?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Under 18", "18 - 24 years old", "25 - 34 years old", "35 - 44 years old", "45 - 54 years old", "over 55"]
+      },
+      {
+        "questionId": 2,
+        "questionTitle": "What is your gender?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Male", "Female", "Other", "Prefer not to say"]
+      },
+      {
+        "questionId": 3,
+        "questionTitle": "What is your current occupation?",
+        "questionType": "TEXT"
+      },
+      {
+        "questionId": 4,
+        "questionTitle": "How would you describe your living situation?",
+        "questionType": "SINGLECHOICE",
+        "options": ["I live alone", "I live with my partner", "I live with my partner and my children", "I live in a shared apartment"]
+      },
+      {
+        "questionId": 5,
+        "questionTitle": "If you have children, who is taking care of them most of the time?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Me", "My partner", "We share the responsibility equally", "I do not have children"]
+    },
+    {
+        "questionId": 6,
+        "questionTitle": "I enjoy working from home",
+        "questionType": "SLIDER",
+        "questionAnswers": ["1", "5"],
+        "lowest": "Highly agree",
+        "highest": "Highly disagree"
+    },
+    {
+        "questionId": 7,
+        "questionTitle": "How often did you work from home before COVID-19??",
+        "questionType": "SINGLECHOICE",
+        "options": ["never", "less than once a week", "1 day per week", "2-3 days per week", "3-5 days per week", "6-7 days per week"]
+    },
+    {
+        "questionId": 8,
+        "questionTitle": "Which of these obstacles have you experienced while working from home?",
+        "questionType": "MULTIPLECHOICE",
+        "questionAnswers": [
+            "Poor Internet connection",
+            "No access to important data and needed information",
+            "Poor availability of contacting work colleagues and superiors",
+            "Lack of supportive culture",
+            "Lack of self motivation",
+            "Working rules are unclear",
+            "Required technology (hardware) is missing"
+          ],
+          "optionalTextfield": true
+    },
+    {
+        "questionId": 9,
+        "questionTitle": "How do you rate your social connections to your colleagues when working in the office?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Very good", "Good", "Sufficient", "Not good", "Bad"]
+    },
+    {
+        "questionId": 10,
+        "questionTitle": "Which of the following statements apply when you work in an office?",
+        "questionType": "MULTIPLECHOICE",
+        "questionAnswers": [
+            "I have fixed working hours",
+            "I have fixed break times",
+            "I (sometimes) work during the night (between 10pm - 6am)",
+            "I (sometimes) work on Saturdays",
+            "I (sometimes) work on Sundays"
+          ],
+          "optionalTextfield": true
+    },
+    {
+        "questionId": 11,
+        "questionTitle": "Which of the following statements apply when you work at home?",
+        "questionType": "MULTIPLECHOICE",
+        "questionAnswers": [
+            "I have fixed working hours",
+            "I have fixed break times",
+            "I (sometimes) work during the night (between 10pm - 6am)",
+            "I (sometimes) work on Saturdays",
+            "I (sometimes) work on Sundays"
+          ],
+          "optionalTextfield": true
+    },
+    {
+        "questionId": 12,
+        "questionTitle": "How do you rate your working facilities at home?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Very good", "Good", "Sufficient", "Not good", "Bad"]
+    },
+    {
+        "questionId": 13,
+        "questionTitle": "Do you have a room for yourself to work in?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Yes", "No"]
+    },
+    {
+        "questionId": 14,
+        "questionTitle": "Do you think that you are more independent if you work from home?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Yes", "No"]
+    },
+    {
+        "questionId": 15,
+        "questionTitle": "Do you think that by working from home you can better combine work with other areas of life (e.g. family)?",
+        "questionType": "SINGLECHOICE",
+        "options": ["Yes", "No"]
+    },
+    {
+        "questionId": 16,
+        "questionTitle": "How does your typical work day look like during the COVID-19 situation?",
+        "questionType": "CALENDAR"
+    }
+
+]
