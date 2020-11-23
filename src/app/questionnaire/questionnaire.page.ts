@@ -110,58 +110,6 @@ export class QuestionnairePage implements OnInit {
     }
   }
 
-  addToAnswerArray(usageCase: string, event) {
-    const title = event.target.value;
-    const checkIfAlreadyAdded = subjectCheck =>
-      this.currentAnswerArray.some(subject => subject === subjectCheck);
-    if (checkIfAlreadyAdded(title)) {
-      return;
-    }
-
-    if (
-      usageCase === 'SUBJECTS' &&
-      (title === 'Biologie' ||
-        title === 'Chemie' ||
-        title === 'Deutsch' ||
-        title === 'Englisch' ||
-        title === 'Französisch' ||
-        title === 'Geographie' ||
-        title === 'Geschichte' ||
-        title === 'Informatik' ||
-        title === 'Latein' ||
-        title === 'Mathe' ||
-        title === 'Physik' ||
-        title === 'Spanisch')
-    ) {
-      this.currentAnswerArray.push(title);
-    }
-  }
-
-  removeFromAnswerArray(usageCase: string, title) {
-    if (
-      usageCase === 'SUBJECTS' &&
-      (title === 'Biologie' ||
-        title === 'Chemie' ||
-        title === 'Deutsch' ||
-        title === 'Englisch' ||
-        title === 'Französisch' ||
-        title === 'Geographie' ||
-        title === 'Geschichte' ||
-        title === 'Informatik' ||
-        title === 'Latein' ||
-        title === 'Mathe' ||
-        title === 'Physik' ||
-        title === 'Spanisch')
-    ) {
-      for (let i = 0; i < this.currentAnswerArray.length; i++) {
-        if (this.currentAnswerArray[i] === title) {
-          this.currentAnswerArray.splice(i, 1);
-          i--;
-        }
-      }
-    }
-  }
-
   goToNextSlide() {
     // if (this.currentSlide >= 16) {
     //   throw new Error('Cannot go to next slide.');
